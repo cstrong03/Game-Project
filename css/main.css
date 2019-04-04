@@ -1,8 +1,8 @@
 body{
 	margin: 0;
 }
-/*canvas{
-	position: relative;
+canvas{
+	background-color: #202020;
 }
 #bg-modal{
 	height: 100%;
@@ -47,4 +47,4 @@ h1{
 #btn:hover{
 	color: #b3f200;
 	transform: scale(1.3);
-}*/
+}

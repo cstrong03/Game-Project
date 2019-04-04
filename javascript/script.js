@@ -19,35 +19,51 @@ let box = {
 	y_velocity: 0
 };
 
- function Obstacle (x, x_velocity, y){
+ class Obstacle{ 
+ 	constructor(x, x_velocity, y){
  	this.x = x;
 	this.x_velocity = x_velocity;
-	this.y = y;
-
-  this.draw = ()=> {
+	this.y = 700;
+}
+  draw() {
   	cxt.beginPath();
 	cxt.rect(this.x, this.y, 50, 100);
 	cxt.strokeStyle = 'magenta';
 	cxt.stroke();
 	cxt.fill();
   }
-  this.update = ()=> {
+  update(){
   	this.draw();
   	if (this.x >= innerWidth) {
-		this.dx = 250;
+		this.x_velocity = 250;
 	}
-	this.x += this.dx;
-
-	
-  }
 }
-let  obstacleArray= [];
-for (let i = 0; i < 10; i++) {
-	let x = Math.random() * (innerWidth - 50);
-	let y = 700;
-	let dx = (Math.random()- 0.5) * 8;
-	obstacleArray.push(new Obstacle(x, y, dx));
+collision(){
+	for(let i = 0; i < obstacleArray.length; i++){
+		if(box.y >= obstacleArray[i].y && box.y <= obstacleArray[i].y+100){
+		if(box.x+50 >= obstacleArray[i].x && box.x+50 <= obstacleArray[i].x+50){
+		box.x = obstacleArray[i].x-50;
+			// youLose();
+		}
+	}
+		if((box.x||box.x+50) >= obstacleArray[i].x && (box.x||box.x+50) <= obstacleArray[i].x+50){
+		if(box.y+50 >= obstacleArray[i].y){
+			box.y = obstacleArray[i].y-50;
+			// youLose();
+		}
+	}
+}
+	
+}
+}
 
+
+
+let obstacleArray = [];
+for(let i = 0; i < 3; i++){
+	obstacleArray.push(new Obstacle(200, 0,))
+	obstacleArray.push(new Obstacle(400, 0,))
+	obstacleArray.push(new Obstacle(600, 0,))
 }
 
 
@@ -73,7 +89,7 @@ let controller = {
 
 let loop = function(){
 	if (controller.up && box.jumping === false) {
-		box.y_velocity -= 40;
+		box.y_velocity -= 50;
 		box.jumping = true;
 	}
 	if (controller.right) {
@@ -93,25 +109,28 @@ let loop = function(){
 	 	box.y_velocity = 0;
 	}
 
-// 	if(box.y >= obstacle.y && box.y <= obstacle.y+100){
-// 	if(box.x+50>=obstacle.x && box.x+50 <= obstacle.x+50){
-// 	box.x = obstacle.x-50;
-// 		// youLose();
-// 	}
-// }
-// 	if((box.x||box.x+50) >= obstacle.x && (box.x||box.x+50) <= obstacle.x+50){
-// 	if(box.y+50>=obstacle.y){
-// 		box.y = obstacle.y-50;
-// 		// youLose();
-// 	}
-// }
 
-	// cxt.clearRect(0,0, innerWidth, innerHeight);
-
+	cxt.clearRect(0,0, innerWidth, innerHeight);
 	for(let i = 0; i < obstacleArray.length; i++){
-		console.log(obstacleArray[i].update());
+		obstacleArray[i].update();
+		obstacleArray[i].collision();
 
-	 } 
+	 }
+
+
+// 	if(box.y >= this.y && box.y <= this.y+100){
+// 	if(box.x+50>=this.x && box.x+50 <= this.x+50){
+// 	box.x = this.x-50;
+// 		// youLose();
+// 	}
+// }
+// 	if((box.x||box.x+50) >= this.x && (box.x||box.x+50) <= this.x+50){
+// 	if(box.y+50>=this.y){
+// 		box.y = this.y-50;
+// 		// youLose();
+// 	}
+// }
+
 
 	// obstacle.y_velocity += 1.5; //This simulates gravity meaning the rectangle will always fall.
 	// obstacle.x += obstacle.x_velocity;
@@ -124,9 +143,8 @@ let loop = function(){
 // This above is so if the rectangle goes of one side of the screen then "teleport it back to the right side and vice versa"
 
 	
-	cxt.fillStyle = '#202020';
-	cxt.fillRect(0,0,innerWidth,innerHeight);
-	cxt.fillStyle = 'magenta';
+	cxt.fillRect(0,0, 50, 50);
+	cxt.fillStyle = 'purple';
 	cxt.rect(box.x, box.y, box.width, box.height);
 	cxt.fill();
 	cxt.strokeStyle = 'purple';
