@@ -11,9 +11,11 @@ canvas{
 	top: 0;
 	z-index: 23;
 	position: absolute;
-	display: flex;
+	/*display: flex;*/
 	justify-content: center;
 	align-items: center;
+	display: none;
+
 }
 #modal-content{
 	background-color: grey;

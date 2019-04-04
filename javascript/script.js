@@ -9,6 +9,7 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 
 
+
 let box = {
 	height: 50,
 	jumping: true,
@@ -43,13 +44,14 @@ collision(){
 		if(box.y >= obstacleArray[i].y && box.y <= obstacleArray[i].y+100){
 		if(box.x+50 >= obstacleArray[i].x && box.x+50 <= obstacleArray[i].x+50){
 		box.x = obstacleArray[i].x-50;
-			// youLose();
+			 youLose();
+			
 		}
 	}
 		if((box.x||box.x+50) >= obstacleArray[i].x && (box.x||box.x+50) <= obstacleArray[i].x+50){
 		if(box.y+50 >= obstacleArray[i].y){
 			box.y = obstacleArray[i].y-50;
-			// youLose();
+			youLose();
 		}
 	}
 }
@@ -60,10 +62,11 @@ collision(){
 
 
 let obstacleArray = [];
-for(let i = 0; i < 3; i++){
-	obstacleArray.push(new Obstacle(200, 0,))
-	obstacleArray.push(new Obstacle(400, 0,))
-	obstacleArray.push(new Obstacle(600, 0,))
+for(let i = 0; i < 4; i++){
+	obstacleArray.push(new Obstacle(300, 0,))
+	obstacleArray.push(new Obstacle(500, 0,))
+	obstacleArray.push(new Obstacle(700, 0,))
+	obstacleArray.push(new Obstacle(900, 0,))
 }
 
 
@@ -89,7 +92,7 @@ let controller = {
 
 let loop = function(){
 	if (controller.up && box.jumping === false) {
-		box.y_velocity -= 50;
+		box.y_velocity -= 40;
 		box.jumping = true;
 	}
 	if (controller.right) {
@@ -102,7 +105,6 @@ let loop = function(){
 	box.x_velocity *= 0.9; //Both lines simulate friction. The reducde the x and y velocity to make it look like you are gradually slowing down. 
 	box.y_velocity *= 0.9;
 	
-
 	 if(box.y > 750){
 	 	box.jumping = false;
 	 	box.y = 750;
@@ -116,54 +118,19 @@ let loop = function(){
 		obstacleArray[i].collision();
 
 	 }
-
-
-// 	if(box.y >= this.y && box.y <= this.y+100){
-// 	if(box.x+50>=this.x && box.x+50 <= this.x+50){
-// 	box.x = this.x-50;
-// 		// youLose();
-// 	}
-// }
-// 	if((box.x||box.x+50) >= this.x && (box.x||box.x+50) <= this.x+50){
-// 	if(box.y+50>=this.y){
-// 		box.y = this.y-50;
-// 		// youLose();
-// 	}
-// }
-
-
-	// obstacle.y_velocity += 1.5; //This simulates gravity meaning the rectangle will always fall.
-	// obstacle.x += obstacle.x_velocity;
-	// obstacle.y += obstacle.y_velocity;
-
-	//  if(obstacle.y > 700){
-	//  	obstacle.y = 700;
-	//  	obstacle.y_velocity = 0;
-	// }
-// This above is so if the rectangle goes of one side of the screen then "teleport it back to the right side and vice versa"
-
 	
 	cxt.fillRect(0,0, 50, 50);
 	cxt.fillStyle = 'purple';
 	cxt.rect(box.x, box.y, box.width, box.height);
 	cxt.fill();
 	cxt.strokeStyle = 'purple';
-
-
-
 	window.requestAnimationFrame(loop);
-
 };
 
-// function youLose() {
-// 	document.querySelector().addEventListener('', (){
-// 		document.querySelector('#bg-modal').style.display = 'flex';
-// 	})
-
-// 	document.querySelector('#close').addEventListener('click', (){
-// 		document.querySelector('#bg-modal').style.display = "none";
-// 	})
-// }
+const youLose =()=>{
+	let modal = document.querySelector('#bg-modal')
+	modal.style.display = "flex"
+}
 
 
 window.addEventListener('keydown', controller.keyListener);
