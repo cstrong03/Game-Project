@@ -11,3 +11,8 @@ Technologies: HTML(Canvas) and Javascript
 Anticipated Problems: Learning canvas and all its workings. Making it look less simple
 
 Potential Solutions: RESEARCH!!!!
+
+
+##Deployment
+Check out my work in progress here!
+[jumpy-square.surge.sh]
