@@ -38,6 +38,7 @@ let box = {
   	if (this.x >= innerWidth) {
 		this.x_velocity = 250;
 	}
+
 }
 collision(){
 	for(let i = 0; i < obstacleArray.length; i++){
