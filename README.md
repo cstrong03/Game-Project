@@ -15,4 +15,4 @@ Potential Solutions: RESEARCH!!!!
 
 ##Deployment
 Check out my work in progress here!
-[jumpy-square.surge.sh]
+[http://jumpy-square.surge.sh/]
