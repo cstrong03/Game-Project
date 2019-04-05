@@ -48,11 +48,17 @@ collision(){
 			
 		}
 	}
+	else{
+		winner();
+	}
 		if((box.x||box.x+50) >= obstacleArray[i].x && (box.x||box.x+50) <= obstacleArray[i].x+50){
 		if(box.y+50 >= obstacleArray[i].y){
 			box.y = obstacleArray[i].y-50;
 			youLose();
 		}
+	}
+	else{
+		winner();
 	}
 }
 	
@@ -129,10 +135,23 @@ let loop = function(){
 
 const youLose =()=>{
 	let modal = document.querySelector('#bg-modal')
-	modal.style.display = "flex"
+	modal.style.display = 'flex';
+}
+
+const winner = ()=>{
+	if (box.x >= innerWidth) {
+		let win = document.querySelector('#background')
+		win.style.display = 'flex';
+	}
+}
+
+const restart = () => {
+	window.location.reload(winner(), youLose());
 }
 
 
 window.addEventListener('keydown', controller.keyListener);
 window.addEventListener('keyup', controller.keyListener);
 window.requestAnimationFrame(loop);
+let press = document.querySelector('.btn');
+press.addEventListener('click', restart);
