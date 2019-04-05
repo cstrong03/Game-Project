@@ -2,23 +2,54 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			background: #262626;
+		}
+		ul{
+			margin: 0;
+			padding: 0;
+			display:flex;
+			flex-direction:row-reverse; 
+		}
+		ul li{
+			list-style: none;
+			color: #fff;
+			font-size: 6em;
+			font-weight: bold;
+			letter-spacing: 10px;
+			filter: blur(1px);
+			transition: 4s; 
+		}
+		ul li:hover,
+		ul li:hover ~ li{
+			transform: rotate(180deg) translateY(-200px);
+			transition: 2s;
+			filter: blur(20px);
+			opacity: 0;
+		}
+	</style>
 </head>
 <body>
 
-	<canvas></canvas>
+	<ul>
+		<li>P</li>
+		<li>M</li>
+		<li>U</li>
+		<li>J</li>
+		<li>_</li>
+		<li>K</li>
+		<li>C</li>
+		<li>O</li>
+		<li>L</li>
+		<li>B</li>
+	</ul>
 
-	<div id="bg-modal">
-		<div id="modal-content">
-			<h1>YOU LOSE</h1>
-			<button id="btn">Play Again?</button>
-			<div id="close">&times;</div>
-		</div>
-	</div>
-
-	<!-- <iframe src="https://giphy.com/embed/LFiOdYoOlEKac" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/funny-baby-winner-LFiOdYoOlEKac">via GIPHY</a></p> -->
-
-	
-<script src="../javascript/script.js"></script>
 </body>
 </html>
